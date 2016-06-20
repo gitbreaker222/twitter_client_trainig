@@ -1,6 +1,6 @@
 'use strict';
 angular.module('main')
-.service('GetOAuth2Token', function ($log, $window, $http) {
+.service('GetOAuth2Token', ['$log', '$window', '$http'], function ($log, $window, $http) {
 
   $log.log('Hello from your Service: GetOAuth2Token in module main');
   var consumerKey = encodeURIComponent('YOUR_KEY');
