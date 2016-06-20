@@ -12,6 +12,24 @@
         <p>Learn more...</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
+
+      <ion-item ng-repeat="tweet in tweets"
+        class="item-remove-animate item-avatar item-icon-right"
+        type="item-text-wrap"
+        ui-sref="main.listDetail">
+        <img src="main/assets/images/yo@2x.png"
+             title="{{ tweet.user }}">
+        <h2>{{ tweet.content }}</h2>
+        <p>
+          <span>
+            {{ tweet.user }} -
+          </span>
+          <span>
+            {{ tweet.timestamp | date }}
+          </span>
+        </p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
     </ion-list>
 
   </ion-content>
