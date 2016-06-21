@@ -1,6 +1,11 @@
 <ion-view view-title="Tweets">
   <ion-content>
 
+    <div ng-if="list.loading"
+         class="loading_overlay">
+      <ion-spinner icon="crescent"></ion-spinner>
+    </div>
+
     <div class="list list-inset">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
@@ -14,9 +19,9 @@
 
     <ion-list>
       <ion-item ng-repeat="tweet in list.data.tweets.statuses"
-        class="item-remove-animate item-avatar item-icon-right"
-        type="item-text-wrap"
-        ui-sref="main.listDetail">
+                class="item-remove-animate item-avatar item-icon-right"
+                type="item-text-wrap"
+                ui-sref="main.listDetail">
         <img src="main/assets/images/yo@2x.png"
              title="{{ tweet.user }}">
         <h2>{{ tweet.text }}</h2>
