@@ -2,6 +2,7 @@
 angular.module('main')
   .service('GetTweets', function (GetOAuth2Token, $http) {
 
+    var that = this;
     var _sendRequest = function (searchStringEncoded) {
       var searchUrlPrefix = 'https://api.twitter.com/1.1/search/tweets.json?q=',
         searchUrlPostfix = '&src=typd';
@@ -15,7 +16,15 @@ angular.module('main')
         console.log(response)
       });
     };
-    var that = this;
+    var _encodeSearchString = function (searchString) {
+      return searchString.replace(/#/g, '%23')
+        .replace(/@/g, '%40')
+        .replace(/\(/g, '%28')
+        .replace(/\)/g, '%29')
+        .replace(/:/g, '%3A')
+        .replace(/"/g, '%22')
+        .replace(/\s/g, '%20');
+    };
 
     this.data = {
       searchString: '',
@@ -25,7 +34,7 @@ angular.module('main')
 
 
     this.get = function (searchString) {
-      var encondedSearchString = '%23kreator';
+      var encondedSearchString = _encodeSearchString(searchString);
 
       return GetOAuth2Token.getToken().then(function () {
         return _sendRequest(encondedSearchString).then(function (result) {
