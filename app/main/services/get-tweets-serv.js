@@ -1,12 +1,28 @@
 'use strict';
 angular.module('main')
-  .service('GetTweets', function () {
+  .service('GetTweets', function (GetOAuth2Token, $http) {
+
+    var _sendRequest = function (searchStringEncoded) {
+      var searchUrlPrefix = 'https://api.twitter.com/1.1/search/tweets.json?q=',
+        searchUrlPostfix = '&src=typd';
+
+      return $http({
+        method: 'GET',
+        url: searchUrlPrefix + searchStringEncoded + searchUrlPostfix
+      }).then(function successCallback(response) {
+        return response
+      }, function errorCallback(response) {
+        console.log(response)
+      });
+    };
+
 
     this.data = {
       searchString: '',
       tweets: {},
       testTeweets: {}
     };
+
 
     this.get = function (searchString) {
       this.data.testTweets = {
@@ -401,11 +417,11 @@ angular.module('main')
         }
       };
 
-      var searchUrlPrefix = 'https://api.twitter.com/1.1/search/tweets.json?q=',
-        searchStringEncoded = '%23kreator', //#kreator
-        searchUrlPostfix = '&src=typd';
+      var encondedSearchString = '%23kreator';
 
-      console.log(searchString);
-    }
+      GetOAuth2Token.getToken().then(function(result){
+        _sendRequest(encondedSearchString)
+      });
+    };
 
   });
