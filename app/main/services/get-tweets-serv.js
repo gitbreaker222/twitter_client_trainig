@@ -1,6 +1,6 @@
 'use strict';
 angular.module('main')
-  .service('GetTweets', function (GetOAuth2Token, $http) {
+  .service('GetTweets', function ($log, GetOAuth2Token, $http) {
 
     var that = this;
     var _sendRequest = function (searchStringEncoded) {
@@ -10,10 +10,10 @@ angular.module('main')
       return $http({
         method: 'GET',
         url: searchUrlPrefix + searchStringEncoded + searchUrlPostfix
-      }).then(function successCallback(response) {
-        return response
-      }, function errorCallback(response) {
-        console.log(response)
+      }).then(function successCallback (response) {
+        return response;
+      }, function errorCallback (response) {
+        $log.log(response);
       });
     };
     var _encodeSearchString = function (searchString) {
