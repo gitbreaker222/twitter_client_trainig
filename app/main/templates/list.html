@@ -13,29 +13,19 @@
     </div>
 
     <ion-list>
-      <ion-item
-        class="item-remove-animate item-avatar item-icon-right"
-        type="item-text-wrap"
-        ui-sref="main.listDetail">
-        <img src="main/assets/images/yo@2x.png">
-        <h2>Mr. Yo</h2>
-        <p>Learn more...</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
-
-      <ion-item ng-repeat="tweet in list.data.tweets"
+      <ion-item ng-repeat="tweet in list.data.testTweets.statuses"
         class="item-remove-animate item-avatar item-icon-right"
         type="item-text-wrap"
         ui-sref="main.listDetail">
         <img src="main/assets/images/yo@2x.png"
              title="{{ tweet.user }}">
-        <h2>{{ tweet.content }}</h2>
+        <h2>{{ tweet.text }}</h2>
         <p>
           <span>
-            {{ tweet.user }} -
+            {{ tweet.user.screen_name }} -
           </span>
           <span>
-            {{ tweet.timestamp | date }}
+            {{ tweet.created_at | date }}
           </span>
         </p>
         <i class="icon ion-chevron-right icon-accessory"></i>
