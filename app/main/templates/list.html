@@ -1,7 +1,17 @@
-<ion-view view-title="List">
+<ion-view view-title="Tweets">
   <ion-content>
 
-    <!-- content goes here -->
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <form ng-submit="search(searchString)">
+          <input type="text"
+                 placeholder="Search"
+                 ng-model="searchString">
+        </form>
+      </label>
+    </div>
+
     <ion-list>
       <ion-item
         class="item-remove-animate item-avatar item-icon-right"
