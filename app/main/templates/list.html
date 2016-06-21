@@ -4,10 +4,10 @@
     <div class="list list-inset">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
-        <form ng-submit="search(searchString)">
+        <form ng-submit="list.search(list.data.searchString)">
           <input type="text"
                  placeholder="Search"
-                 ng-model="searchString">
+                 ng-model="list.data.searchString">
         </form>
       </label>
     </div>
@@ -23,7 +23,7 @@
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
 
-      <ion-item ng-repeat="tweet in tweets"
+      <ion-item ng-repeat="tweet in list.data.tweets"
         class="item-remove-animate item-avatar item-icon-right"
         type="item-text-wrap"
         ui-sref="main.listDetail">

@@ -2,11 +2,10 @@
 angular.module('main')
 .controller('ListCtrl', function ($log, $scope, GetTweets) {
 
-  $scope.searchString = "";
-  $scope.tweets = GetTweets.tweets;
+  this.data = GetTweets.data;
 
-  $scope.search = function(searchString){
-    console.log(searchString)
+  this.search = function(searchString){
+    GetTweets.get(searchString);
   }
 
 });
