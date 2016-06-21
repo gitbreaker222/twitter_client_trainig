@@ -15,7 +15,7 @@ angular.module('main')
         console.log(response)
       });
     };
-
+    var that = this;
 
     this.data = {
       searchString: '',
@@ -419,8 +419,10 @@ angular.module('main')
 
       var encondedSearchString = '%23kreator';
 
-      GetOAuth2Token.getToken().then(function(result){
-        _sendRequest(encondedSearchString)
+      return GetOAuth2Token.getToken().then(function(){
+        return _sendRequest(encondedSearchString).then(function(result){
+          that.data.tweets = result.data;
+        })
       });
     };
 
