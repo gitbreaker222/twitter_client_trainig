@@ -27,7 +27,7 @@ angular.module('main', [
         }
       })
       .state('main.listDetail', {
-        url: '/list/detail',
+        url: '/list/detail/:id',
         views: {
           'pageContent': {
             templateUrl: 'main/templates/list-detail.html',

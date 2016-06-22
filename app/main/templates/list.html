@@ -21,7 +21,7 @@
       <ion-item ng-repeat="tweet in list.data.tweets.statuses"
                 class="item-remove-animate item-avatar item-icon-right"
                 type="item-text-wrap"
-                ui-sref="main.listDetail">
+                ui-sref="main.listDetail({id: tweet.id})">
         <img src="main/assets/images/yo@2x.png"
              title="{{ tweet.user }}">
         <h2>{{ tweet.text }}</h2>
