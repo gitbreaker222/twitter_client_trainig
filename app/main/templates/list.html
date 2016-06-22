@@ -22,8 +22,8 @@
                 class="item-remove-animate item-avatar item-icon-right"
                 type="item-text-wrap"
                 ui-sref="main.listDetail({id: tweet.id})">
-        <img src="main/assets/images/yo@2x.png"
-             title="{{ tweet.user }}">
+        <img src="{{ tweet.user.profile_image_url }}"
+             title="{{ tweet.user.screen_name }}">
         <h2>{{ tweet.text }}</h2>
         <p>
           <span>
