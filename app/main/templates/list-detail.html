@@ -1,18 +1,23 @@
 <ion-view view-title="tweet id or so">
   <ion-content class="padding">
 
-    <div class="tweet">
+    <div class="tweet"
+         ng-if="!!detail.tweet">
       <span>
-        <img ng-src="detail.tweet.user.profile_image_url"
+        <img ng-src="{{detail.tweet.user.profile_image_url}}"
              title="{{ detail.tweet.user.screen_name }}"
              class="size64">
-        22. Juni
+        <span>{{ detail.tweet.created_at }}</span>
         <button>...</button>
       </span>
       <div class="card">
         {{ detail.tweet.text }}
       </div>
     </div>
+
+    <h4 ng-if="!detail.tweet">
+      No tweets loaded. TODO: make server request for this id
+    </h4>
 
   </ion-content>
 </ion-view>

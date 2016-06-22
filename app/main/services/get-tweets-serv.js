@@ -3,6 +3,9 @@ angular.module('main')
   .service('GetTweets', function ($log, GetOAuth2Token, $http) {
 
     var that = this;
+    var _hasTweets = function () {
+      return !!that.data.tweets.statuses && that.data.tweets.statuses.length > 0;
+    };
     var _sendRequest = function (searchStringEncoded) {
       var searchUrlPrefix = 'https://api.twitter.com/1.1/search/tweets.json?q=',
         searchUrlPostfix = '&src=typd';
@@ -28,8 +31,7 @@ angular.module('main')
 
     this.data = {
       searchString: '',
-      tweets: {},
-      testTeweets: {}
+      tweets: {}
     };
 
 
@@ -41,6 +43,24 @@ angular.module('main')
           that.data.tweets = result.data;
         });
       });
+    };
+
+    this.getTweet = function (id) {
+      var selectedTweet;
+
+      if (!_hasTweets()) {
+        return null;
+      }
+
+      that.data.tweets.statuses.every(function (tweet) {
+        if ((tweet.id + '') === id) {
+          selectedTweet = tweet;
+          return false;
+        }
+        return true;
+      });
+
+      return selectedTweet;
     };
 
   });

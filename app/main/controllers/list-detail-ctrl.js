@@ -2,6 +2,7 @@
 angular.module('main')
 .controller('ListDetailCtrl', function ($log, $state, GetTweets) {
 
-  var tweet = GetTweets.getTweet($state.params.id);
+  var that = this;
+  that.tweet = GetTweets.getTweet($state.params.id);
 
 });
