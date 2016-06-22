@@ -1,7 +1,7 @@
 'use strict';
 angular.module('main')
-.controller('ListDetailCtrl', function ($log) {
+.controller('ListDetailCtrl', function ($log, $state, GetTweets) {
 
-  $log.log('Hello from your Controller: ListDetailCtrl in module main:. This is your controller:', this);
+  var tweet = GetTweets.getTweet($state.params.id);
 
 });
