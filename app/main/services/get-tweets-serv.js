@@ -13,9 +13,9 @@ angular.module('main')
       return $http({
         method: 'GET',
         url: searchUrlPrefix + searchStringEncoded + searchUrlPostfix
-      }).then(function successCallback(response) {
+      }).then(function successCallback (response) {
         return response;
-      }, function errorCallback(response) {
+      }, function errorCallback (response) {
         $log.log(response);
       });
     };
