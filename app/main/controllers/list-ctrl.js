@@ -1,6 +1,6 @@
 'use strict';
 angular.module('main')
-  .controller('ListCtrl', function ($log, $scope, GetTweets) {
+  .controller('ListCtrl', function ($log, $scope, GetTweets, $cordovaKeyboard) {
 
     var that = this;
 
@@ -8,7 +8,7 @@ angular.module('main')
     this.loading = false;
 
     this.search = function (searchString) {
-      that.hideKeyboard();
+      that.closeKeyboard();
 
       that.loading = true;
       GetTweets.get(searchString).then(function () {
@@ -18,8 +18,8 @@ angular.module('main')
       });
     };
 
-    this.hideKeyboard = function () {
-      console.log('hide keyboard')
+    this.closeKeyboard = function () {
+      $cordovaKeyboard.close();
     };
 
   });
