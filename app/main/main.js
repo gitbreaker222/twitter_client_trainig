@@ -49,7 +49,7 @@ angular.module('main', [
         views: {
           'pageContent': {
             templateUrl: 'main/templates/info.html',
-            controller: 'InfoCtrl as ctrl'
+            controller: 'InfoCtrl as info'
           }
         }
       });
