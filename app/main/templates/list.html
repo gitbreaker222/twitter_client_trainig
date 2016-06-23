@@ -12,7 +12,8 @@
         <form ng-submit="list.search(list.data.searchString)">
           <input type="text"
                  placeholder="Search"
-                 ng-model="list.data.searchString">
+                 ng-model="list.data.searchString"
+                 ng-blur="list.hideKeyboard()">
         </form>
       </label>
     </div>

@@ -8,12 +8,18 @@ angular.module('main')
     this.loading = false;
 
     this.search = function (searchString) {
+      that.hideKeyboard();
+
       that.loading = true;
       GetTweets.get(searchString).then(function () {
         that.loading = false;
       }, function () {
         that.loading = false;
       });
+    };
+
+    this.hideKeyboard = function () {
+      console.log('hide keyboard')
     };
 
   });
