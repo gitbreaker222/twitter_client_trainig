@@ -43,5 +43,14 @@ angular.module('main', [
             controller: 'DebugCtrl as ctrl'
           }
         }
+      })
+      .state('main.info', {
+        url: '/info',
+        views: {
+          'pageContent': {
+            templateUrl: 'main/templates/info.html',
+            controller: 'InfoCtrl as ctrl'
+          }
+        }
       });
   });
