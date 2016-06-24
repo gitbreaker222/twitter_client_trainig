@@ -19,7 +19,9 @@ angular.module('main')
     };
 
     this.closeKeyboard = function () {
-      $cordovaKeyboard.close();
+      if (window.cordova) {
+        $cordovaKeyboard.close();
+      }
     };
 
   });
