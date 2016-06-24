@@ -10,7 +10,8 @@
         <span>{{ detail.tweet.created_at }}</span>
         <button>...</button>
       </span>
-      <div class="card">
+      <div class="card"
+           ng-bind-html="detail.tweet.text | linky">
         {{ detail.tweet.text }}
       </div>
     </div>

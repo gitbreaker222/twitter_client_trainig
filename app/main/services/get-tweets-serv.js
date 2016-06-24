@@ -28,7 +28,7 @@ angular.module('main')
         .replace(/"/g, '%22')
         .replace(/\s/g, '%20');
     };
-    
+
     var _hasLinks = function (tweet) {
       return tweet.entities.urls.length > 0;
     };
@@ -50,7 +50,6 @@ angular.module('main')
 
       for (var i = 0, length = urls.length; i < length; i++) {
         var urlFormatted = _wrapUrlWithAnchorTag(urls[i]);
-        console.log(text.replace(urls[i], urlFormatted));
         currentTweet.text = text.replace(urls[i].url, urlFormatted);
       }
 
@@ -58,7 +57,7 @@ angular.module('main')
 
       return tweets;
     };
-    
+
     this.data = {
       searchString: '',
       tweets: {}
