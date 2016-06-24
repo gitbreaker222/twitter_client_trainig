@@ -3,16 +3,15 @@
 
     <div class="tweet"
          ng-if="!!detail.tweet">
-      <span>
+      <span>{{ detail.tweet.created_at }}</span>
+
+      <div class="card">
         <img ng-src="{{detail.tweet.user.profile_image_url}}"
              title="{{ detail.tweet.user.screen_name }}"
              class="size64">
-        <span>{{ detail.tweet.created_at }}</span>
-        <button>...</button>
-      </span>
-      <div class="card"
-           ng-bind-html="detail.tweet.text | linky">
-        {{ detail.tweet.text }}
+        <p ng-bind-html="detail.tweet.text | linky">
+          {{ detail.tweet.text }}
+        </p>
       </div>
     </div>
 

@@ -28,48 +28,12 @@ angular.module('main')
         .replace(/"/g, '%22')
         .replace(/\s/g, '%20');
     };
-
-    var _hasLinks = function (tweet) {
-      return tweet.entities.urls.length > 0;
-    };
-
-    var _wrapUrlWithAnchorTag = function (urlEntity) {
-      return '<a href="' +
-        urlEntity.expanded_url + '">' +
-        urlEntity.display_url + '</a>';
-    };
-
-    var _formatLinks = function (tweets) {
-      var currentTweet = tweets.statuses[0],
-        urls = currentTweet.entities.urls,
-        text = currentTweet.text;
-
-      if (!_hasLinks(currentTweet)) {
-        return;
-      }
-
-      for (var i = 0, length = urls.length; i < length; i++) {
-        var urlFormatted = _wrapUrlWithAnchorTag(urls[i]);
-        currentTweet.text = text.replace(urls[i].url, urlFormatted);
-      }
-
-      tweets.statuses[0] = currentTweet;
-
-      return tweets;
-    };
-
-    this.data = {
-      searchString: '',
-      tweets: {}
-    };
-
-
+    
     this.get = function (searchString) {
       var encondedSearchString = _encodeSearchString(searchString);
 
       return GetOAuth2Token.getToken().then(function () {
         return _sendRequest(encondedSearchString).then(function (result) {
-          //that.data.tweets = _formatLinks(result.data);
           that.data.tweets = result.data;
         });
       });
