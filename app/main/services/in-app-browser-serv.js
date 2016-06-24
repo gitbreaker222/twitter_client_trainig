@@ -2,12 +2,12 @@
 angular.module('main')
   .service('InAppBrowser', function ($window) {
 
-    this.open = function () {
+    this.open = function (url) {
       $window.webview.openWebView(null, null, {
         iconColor: ' #ffff00',
         backgroundColor: '#f00000',
         isPDF: false,
-        url: 'http://mwaysolutions.com',
+        url: url,
         urlEncoding: false,
         visibleAddress: false,
         editableAddress: false,
