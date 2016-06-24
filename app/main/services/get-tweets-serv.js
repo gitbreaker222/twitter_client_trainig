@@ -28,6 +28,11 @@ angular.module('main')
         .replace(/"/g, '%22')
         .replace(/\s/g, '%20');
     };
+
+    this.data = {
+      searchString: '',
+      tweets: {}
+    };
     
     this.get = function (searchString) {
       var encondedSearchString = _encodeSearchString(searchString);
