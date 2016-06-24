@@ -25,7 +25,10 @@
                 ui-sref="main.listDetail({id: tweet.id})">
         <img src="{{ tweet.user.profile_image_url }}"
              title="{{ tweet.user.screen_name }}">
-        <h2 ng-bind-html="tweet.text | linky">{{tweet.text}}</h2>
+        <h2 ng-bind-html="tweet.text | linky"
+            ng-click="openLinkInApp($event)">
+          {{tweet.text}}
+        </h2>
         <p>
           <span>
             {{ tweet.user.screen_name }} -

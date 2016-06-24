@@ -9,7 +9,8 @@
         <img ng-src="{{detail.tweet.user.profile_image_url}}"
              title="{{ detail.tweet.user.screen_name }}"
              class="size64">
-        <p ng-bind-html="detail.tweet.text | linky">
+        <p ng-bind-html="detail.tweet.text | linky"
+           ng-click="openLinkInApp($event)">
           {{ detail.tweet.text }}
         </p>
       </div>
