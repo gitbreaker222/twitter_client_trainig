@@ -47,7 +47,9 @@ angular.module('main')
       });
     };
 
-    
+    this.searchNearGeolocation = function (long, lat) {
+      
+    };
 
     this.getTweet = function (id) {
       var selectedTweet;

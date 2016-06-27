@@ -27,6 +27,12 @@ angular.module('main')
       });
     };
 
+    this.searchNearGeolocation = function () {
+      var long = 48.52311,
+        lat = 9.0555; // Tübingen
+      GetTweets.searchNearGeolocation(long, lat);
+    };
+
     this.closeKeyboard = function () {
       if (window.cordova) {
         $cordovaKeyboard.close();
@@ -44,5 +50,9 @@ angular.module('main')
         InAppBrowser.open(url);
       }
     };
+
+    if (!GetTweets.hasTweets()) {
+      that.searchNearGeolocation();
+    }
 
   });
