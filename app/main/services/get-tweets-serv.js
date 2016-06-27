@@ -67,7 +67,8 @@ angular.module('main')
 
     this.data = {
       searchString: '',
-      tweets: {}
+      tweets: {},
+      trendingHashTags: {}
     };
 
     this.hasTweets = function () {
@@ -92,8 +93,7 @@ angular.module('main')
 
       return GetOAuth2Token.getToken().then(function () {
         return _sendGeoRequest(searchOptions).then(function (result) {
-          console.log('returned something: ', result);
-          that.data.tweets = result.data;
+          that.data.trendingHashTags = result.data[0];
         });
       });
     };
