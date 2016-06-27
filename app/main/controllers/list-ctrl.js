@@ -10,6 +10,11 @@ angular.module('main')
     this.search = function (searchString) {
       that.closeKeyboard();
 
+      if(searchString === ''){
+        this.data.tweets = null;
+        return;
+      }
+
       that.loading = true;
       GetTweets.get(searchString).then(function () {
         that.loading = false;
