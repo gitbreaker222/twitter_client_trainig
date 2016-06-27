@@ -8,6 +8,7 @@ angular.module('main')
     var that = this;
 
     this.data = GetTweets.data;
+    this.hasTweets = GetTweets.hasTweets;
     this.loading = false;
 
     this.search = function (searchString) {
