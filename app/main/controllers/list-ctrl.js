@@ -52,7 +52,7 @@ angular.module('main')
     };
 
     this.clearList = function () {
-      this.data.tweets = null;
+      that.data.tweets = {};
     };
 
     if (!GetTweets.hasTweets()) {
