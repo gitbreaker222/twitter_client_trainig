@@ -3,9 +3,6 @@ angular.module('main')
   .service('GetTweets', function ($log, GetOAuth2Token, $http) {
 
     var that = this;
-    var _hasTweets = function () {
-      return !!that.data.tweets.statuses && that.data.tweets.statuses.length > 0;
-    };
 
     var _sendRequest = function (searchStringEncoded) {
       var searchUrlPrefix = 'https://api.twitter.com/1.1/search/tweets.json?q=',
@@ -36,6 +33,10 @@ angular.module('main')
       tweets: {}
     };
 
+    this.hasTweets = function () {
+      return !!that.data.tweets.statuses && that.data.tweets.statuses.length > 0;
+    };
+
     this.searchFor = function (searchString) {
       var encondedSearchString = _encodeSearchString(searchString);
 
@@ -46,10 +47,12 @@ angular.module('main')
       });
     };
 
+    
+
     this.getTweet = function (id) {
       var selectedTweet;
 
-      if (!_hasTweets()) {
+      if (!that.hasTweets()) {
         return null;
       }
 
