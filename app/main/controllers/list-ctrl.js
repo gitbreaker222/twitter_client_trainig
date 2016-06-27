@@ -1,6 +1,10 @@
 'use strict';
 angular.module('main')
-  .controller('ListCtrl', function ($log, $scope, GetTweets, $cordovaKeyboard) {
+  .controller('ListCtrl', function ($log,
+                                    $scope,
+                                    GetTweets,
+                                    $cordovaKeyboard,
+                                    InAppBrowser) {
 
     var that = this;
 
@@ -31,6 +35,14 @@ angular.module('main')
 
     this.clearList = function () {
       this.data.tweets = null;
+    };
+
+    $scope.openLinkInApp = function (event) {
+      if (window.cordova) {
+        event.preventDefault();
+        var url = 'http://www.emp.de';
+        InAppBrowser.open(url);
+      }
     };
 
   });
