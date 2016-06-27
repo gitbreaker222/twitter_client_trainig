@@ -3,7 +3,8 @@ angular.module('main')
   .controller('ListCtrl', function ($log,
                                     $scope,
                                     GetTweets,
-                                    $cordovaKeyboard) {
+                                    $cordovaKeyboard,
+                                    $cordovaGeolocation) {
 
     var that = this;
 
@@ -30,7 +31,18 @@ angular.module('main')
     this.searchNearGeolocation = function () {
       var long = -122.400612831116,
         lat = 37.781157;
-      GetTweets.searchNearGeolocation(long, lat);
+
+      if (window.cordova) {
+        $cordovaGeolocation.getCurrentPosition(7000).then(function (location) {
+          long = location.coords.longitude;
+          lat = location.coords.latitude;
+          GetTweets.searchNearGeolocation(long, lat);
+        }, function errorCallback (result) {
+          $log.log(result); //no user permission?
+        });
+      } else {
+        GetTweets.searchNearGeolocation(long, lat);
+      }
     };
 
     this.closeKeyboard = function () {
