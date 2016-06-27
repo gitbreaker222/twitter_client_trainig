@@ -6,6 +6,7 @@ angular.module('main')
     var _hasTweets = function () {
       return !!that.data.tweets.statuses && that.data.tweets.statuses.length > 0;
     };
+
     var _sendRequest = function (searchStringEncoded) {
       var searchUrlPrefix = 'https://api.twitter.com/1.1/search/tweets.json?q=',
         searchUrlPostfix = '&src=typd';
@@ -19,6 +20,7 @@ angular.module('main')
         $log.log(response);
       });
     };
+
     var _encodeSearchString = function (searchString) {
       return searchString.replace(/#/g, '%23')
         .replace(/@/g, '%40')
@@ -34,7 +36,7 @@ angular.module('main')
       tweets: {}
     };
 
-    this.get = function (searchString) {
+    this.searchFor = function (searchString) {
       var encondedSearchString = _encodeSearchString(searchString);
 
       return GetOAuth2Token.getToken().then(function () {

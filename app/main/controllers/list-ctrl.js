@@ -20,7 +20,7 @@ angular.module('main')
       }
 
       that.loading = true;
-      GetTweets.get(searchString).then(function () {
+      GetTweets.searchFor(searchString).then(function () {
         that.loading = false;
       }, function () {
         that.loading = false;
