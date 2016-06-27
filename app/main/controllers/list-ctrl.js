@@ -10,8 +10,8 @@ angular.module('main')
     this.search = function (searchString) {
       that.closeKeyboard();
 
-      if(searchString === ''){
-        this.data.tweets = null;
+      if (searchString === '') {
+        that.clearList();
         return;
       }
 
@@ -27,6 +27,10 @@ angular.module('main')
       if (window.cordova) {
         $cordovaKeyboard.close();
       }
+    };
+
+    this.clearList = function () {
+      this.data.tweets = null;
     };
 
   });
