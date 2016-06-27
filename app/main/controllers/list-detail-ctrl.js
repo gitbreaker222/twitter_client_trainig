@@ -9,7 +9,7 @@ angular.module('main')
     that.tweet = GetTweets.getTweet($state.params.id);
 
     $scope.openLinkInApp = function (event) {
-      var url = event.path[0].href;
+      var url = event.srcElement.href;
       if (window.cordova) {
         event.preventDefault();
         InAppBrowser.open(url);
