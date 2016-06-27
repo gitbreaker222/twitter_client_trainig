@@ -28,8 +28,8 @@ angular.module('main')
     };
 
     this.searchNearGeolocation = function () {
-      var long = 48.52311,
-        lat = 9.0555; // Tübingen
+      var long = -122.400612831116,
+        lat = 37.781157;
       GetTweets.searchNearGeolocation(long, lat);
     };
 

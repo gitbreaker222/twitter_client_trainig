@@ -4,6 +4,31 @@ angular.module('main')
 
     var that = this;
 
+    var _getWOEID = function (lat, long) {
+      var searchUrlPrefix = 'https://api.twitter.com/1.1/trends/closest.json?';
+      return $http({
+        method: 'GET',
+        url: searchUrlPrefix + lat + long
+      }).then(function successCallback (response) {
+        return response;
+      }, function errorCallback (response) {
+        $log.log(response);
+      });
+    };
+
+    var _getTrendsPlace = function (WOEID) {
+      var searchUrlPrefix = 'https://api.twitter.com/1.1/trends/place.json?',
+        id = 'id=' + WOEID.data[0].woeid;
+      return $http({
+        method: 'GET',
+        url: searchUrlPrefix + id
+      }).then(function successCallback (response) {
+        return response;
+      }, function errorCallback (response) {
+        $log.log(response);
+      });
+    };
+
     var _sendRequest = function (searchStringEncoded) {
       var searchUrlPrefix = 'https://api.twitter.com/1.1/search/tweets.json?q=',
         searchUrlPostfix = '&src=typd';
@@ -16,6 +41,18 @@ angular.module('main')
       }, function errorCallback (response) {
         $log.log(response);
       });
+    };
+
+    var _sendGeoRequest = function (searchJson) {
+
+      var lat = 'lat=' + searchJson.lat,
+        long = '&long=' + searchJson.long;
+
+      return _getWOEID(lat, long).then(function (WOEID1) {
+        return _getTrendsPlace(WOEID1);
+      });
+
+
     };
 
     var _encodeSearchString = function (searchString) {
@@ -48,7 +85,17 @@ angular.module('main')
     };
 
     this.searchNearGeolocation = function (long, lat) {
-      
+      var searchOptions = {
+        long: long,
+        lat: lat
+      };
+
+      return GetOAuth2Token.getToken().then(function () {
+        return _sendGeoRequest(searchOptions).then(function (result) {
+          console.log('returned something: ', result);
+          that.data.tweets = result.data;
+        });
+      });
     };
 
     this.getTweet = function (id) {
