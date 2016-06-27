@@ -33,7 +33,7 @@ angular.module('main')
       searchString: '',
       tweets: {}
     };
-    
+
     this.get = function (searchString) {
       var encondedSearchString = _encodeSearchString(searchString);
 

@@ -4,8 +4,8 @@ angular.module('main')
 
     this.open = function (url) {
       $window.webview.openWebView(null, null, {
-        iconColor: ' #ffff00',
-        backgroundColor: '#f00000',
+        iconColor: '#ffffff',
+        backgroundColor: '#222222',
         isPDF: false,
         url: url,
         urlEncoding: false,
