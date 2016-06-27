@@ -3,9 +3,32 @@ angular.module('main')
   .service('GetTweets', function ($log, GetOAuth2Token, $http) {
 
     var that = this;
-    var _hasTweets = function () {
-      return !!that.data.tweets.statuses && that.data.tweets.statuses.length > 0;
+
+    var _getWOEID = function (lat, long) {
+      var searchUrlPrefix = 'https://api.twitter.com/1.1/trends/closest.json?';
+      return $http({
+        method: 'GET',
+        url: searchUrlPrefix + lat + long
+      }).then(function successCallback (response) {
+        return response;
+      }, function errorCallback (response) {
+        $log.log(response);
+      });
     };
+
+    var _getTrendsPlace = function (WOEID) {
+      var searchUrlPrefix = 'https://api.twitter.com/1.1/trends/place.json?',
+        id = 'id=' + WOEID.data[0].woeid;
+      return $http({
+        method: 'GET',
+        url: searchUrlPrefix + id
+      }).then(function successCallback (response) {
+        return response;
+      }, function errorCallback (response) {
+        $log.log(response);
+      });
+    };
+
     var _sendRequest = function (searchStringEncoded) {
       var searchUrlPrefix = 'https://api.twitter.com/1.1/search/tweets.json?q=',
         searchUrlPostfix = '&src=typd';
@@ -19,6 +42,19 @@ angular.module('main')
         $log.log(response);
       });
     };
+
+    var _sendGeoRequest = function (searchJson) {
+
+      var lat = 'lat=' + searchJson.lat,
+        long = '&long=' + searchJson.long;
+
+      return _getWOEID(lat, long).then(function (WOEID1) {
+        return _getTrendsPlace(WOEID1);
+      });
+
+
+    };
+
     var _encodeSearchString = function (searchString) {
       return searchString.replace(/#/g, '%23')
         .replace(/@/g, '%40')
@@ -31,10 +67,15 @@ angular.module('main')
 
     this.data = {
       searchString: '',
-      tweets: {}
+      tweets: {},
+      trendingHashTags: {}
     };
 
-    this.get = function (searchString) {
+    this.hasTweets = function () {
+      return !!that.data.tweets.statuses && that.data.tweets.statuses.length > 0;
+    };
+
+    this.searchFor = function (searchString) {
       var encondedSearchString = _encodeSearchString(searchString);
 
       return GetOAuth2Token.getToken().then(function () {
@@ -44,10 +85,23 @@ angular.module('main')
       });
     };
 
+    this.searchNearGeolocation = function (long, lat) {
+      var searchOptions = {
+        long: long,
+        lat: lat
+      };
+
+      return GetOAuth2Token.getToken().then(function () {
+        return _sendGeoRequest(searchOptions).then(function (result) {
+          that.data.trendingHashTags = result.data[0];
+        });
+      });
+    };
+
     this.getTweet = function (id) {
       var selectedTweet;
 
-      if (!_hasTweets()) {
+      if (!that.hasTweets()) {
         return null;
       }
 
