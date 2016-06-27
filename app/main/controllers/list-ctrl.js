@@ -3,8 +3,7 @@ angular.module('main')
   .controller('ListCtrl', function ($log,
                                     $scope,
                                     GetTweets,
-                                    $cordovaKeyboard,
-                                    InAppBrowser) {
+                                    $cordovaKeyboard) {
 
     var that = this;
 
@@ -41,14 +40,6 @@ angular.module('main')
 
     this.clearList = function () {
       this.data.tweets = null;
-    };
-
-    $scope.openLinkInApp = function (event) {
-      if (window.cordova) {
-        event.preventDefault();
-        var url = 'http://www.emp.de';
-        InAppBrowser.open(url);
-      }
     };
 
     if (!GetTweets.hasTweets()) {

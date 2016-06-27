@@ -9,9 +9,9 @@ angular.module('main')
     that.tweet = GetTweets.getTweet($state.params.id);
 
     $scope.openLinkInApp = function (event) {
+      var url = event.path[0].href;
       if (window.cordova) {
         event.preventDefault();
-        var url = 'http://www.emp.de';
         InAppBrowser.open(url);
       }
     };
