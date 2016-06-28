@@ -43,9 +43,32 @@ $ionicons-font-path: "../assets/fonts" !default;
 
 @import "detail";
 
-/*subheader*/
+/*++subheader++*/
 .bar-subheader{
   form, input{
     width: 100%
   }
+
+  input{
+    border: solid rgba(0, 0, 0, 0) 0.1rem
+  }
+
+  input:focus{
+    -webkit-animation: focus-in-animation 600ms;
+    animation:         focus-in-animation 600ms;
+  }
 }
+/*--subheader--*/
+
+/*++animations++*/
+@-webkit-keyframes focus-in-animation {
+  0%   { border-color: rgba(0, 0, 0, 0.0); }
+  50% { border-color: rgba(0, 0, 0, 0.7); }
+  100% { border-color: rgba(0, 0, 0, 0.0); }
+}
+@keyframes focus-in-animation {
+  0%   { border-color: rgba(0, 0, 0, 0.0); }
+  50% { border-color: rgba(0, 0, 0, 0.7); }
+  100% { border-color: rgba(0, 0, 0, 0.0); }
+}
+/*--animations--*/
