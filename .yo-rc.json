@@ -1,8 +1,8 @@
 {
   "generator-m-ionic": {
     "answers": {
-      "appName": "testrun_twitter",
-      "appId": "test.my.testrun_twitter",
+      "appName": "testrunTwitter",
+      "appId": "test.my.testrunTwitter",
       "ionicCss": false,
       "bowerPackages": [
         "angular-dynamic-locale#~0.1.27",
@@ -17,7 +17,7 @@
       "plugins": [
         "cordova-plugin-device"
       ],
-      "appModule": "testrun_twitter",
+      "appModule": "testrunTwitter",
       "ecosystems": []
     }
   }
