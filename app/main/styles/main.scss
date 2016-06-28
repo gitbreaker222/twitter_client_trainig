@@ -42,3 +42,10 @@ $ionicons-font-path: "../assets/fonts" !default;
 }
 
 @import "detail";
+
+/*subheader*/
+.bar-subheader{
+  form, input{
+    width: 100%
+  }
+}
