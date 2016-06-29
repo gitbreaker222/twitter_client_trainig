@@ -17,17 +17,6 @@
 
   <ion-content class="has-subheader">
 
-    <ion-list ng-if="!list.hasTweets()">
-      <h1 class="padding">trending hashtags</h1>
-      <ion-item ng-click="list.search('#progmetal')">
-        <h2>#progmetal</h2>
-      </ion-item>
-      <ion-item ng-repeat="trend in list.data.trendingHashTags.trends"
-        ng-click="list.search( trend.name )">
-        <h2>{{ trend.name }}</h2>
-      </ion-item>
-    </ion-list>
-
     <ion-list>
       <ion-item ng-repeat="tweet in list.data.tweets.statuses"
                 class="item-remove-animate item-avatar item-icon-right"

@@ -14,13 +14,21 @@ angular.module('main', [
       .state('main', {
         url: '/main',
         abstract: true,
-        templateUrl: 'main/templates/menu.html',
-        controller: 'MenuCtrl as menu'
+        templateUrl: 'main/templates/nav-tabs.html'
+      })
+      .state('main.search', {
+        url: '/main',
+        views: {
+          'searchPage': {
+            templateUrl: 'main/templates/search.html',
+            controller: 'ListCtrl as list'
+          }
+        }
       })
       .state('main.list', {
         url: '/list',
         views: {
-          'pageContent': {
+          'tweetsPage': {
             templateUrl: 'main/templates/list.html',
             controller: 'ListCtrl as list'
           }
@@ -29,7 +37,7 @@ angular.module('main', [
       .state('main.listDetail', {
         url: '/list/detail/:id',
         views: {
-          'pageContent': {
+          'tweetsPage': {
             templateUrl: 'main/templates/list-detail.html',
             controller: 'ListDetailCtrl as detail'
           }
@@ -38,7 +46,7 @@ angular.module('main', [
       .state('main.debug', {
         url: '/debug',
         views: {
-          'pageContent': {
+          'infoPage': {
             templateUrl: 'main/templates/debug.html',
             controller: 'DebugCtrl as ctrl'
           }
@@ -47,7 +55,7 @@ angular.module('main', [
       .state('main.info', {
         url: '/info',
         views: {
-          'pageContent': {
+          'infoPage': {
             templateUrl: 'main/templates/info.html',
             controller: 'InfoCtrl as info'
           }
