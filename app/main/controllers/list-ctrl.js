@@ -27,6 +27,9 @@ angular.module('main')
         that.loading = false;
       }, function () {
         that.loading = false;
+        that.$broadcast('scroll.refreshComplete');
+      }).finally(function () {
+        $scope.$broadcast('scroll.refreshComplete');
       });
     };
 
@@ -51,6 +54,10 @@ angular.module('main')
         $log.info('using default fake geo coordinates!');
         GetTweets.searchNearGeolocation(long, lat);
       }
+    };
+
+    this.refresh = function () {
+      this.search(GetTweets.data.tweets.search_metadata.query);
     };
 
     this.closeKeyboard = function () {
