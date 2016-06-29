@@ -2,6 +2,7 @@
 angular.module('main')
   .controller('ListCtrl', function ($log,
                                     $scope,
+                                    $state,
                                     GetTweets,
                                     $cordovaKeyboard,
                                     $cordovaGeolocation) {
@@ -14,6 +15,7 @@ angular.module('main')
 
     this.search = function (searchString) {
       that.closeKeyboard();
+      $state.go('main.list');
 
       if (searchString === '') {
         that.clearList();
