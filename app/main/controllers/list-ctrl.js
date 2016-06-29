@@ -43,6 +43,7 @@ angular.module('main')
           $log.log(result); //no user permission?
         });
       } else {
+        $log.info('using default fake geo coordinates!');
         GetTweets.searchNearGeolocation(long, lat);
       }
     };
@@ -58,6 +59,9 @@ angular.module('main')
     };
 
     if (!GetTweets.hasTweets()) {
+      if ($state.current.name === 'main.list') {
+        return;
+      }
       that.searchNearGeolocation();
     }
 

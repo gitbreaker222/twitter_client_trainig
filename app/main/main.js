@@ -14,7 +14,7 @@ angular.module('main', [
       .state('main', {
         url: '/main',
         abstract: true,
-        templateUrl: 'main/templates/nav-tabs.html',
+        templateUrl: 'main/templates/nav-tabs.html'
       })
       .state('main.search', {
         url: '/main',
