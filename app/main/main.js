@@ -43,7 +43,7 @@ angular.module('main', [
           }
         }
       })
-      .state('main.info.debug', {
+      .state('main.debug', {
         url: '/debug',
         views: {
           'infoPage': {
