@@ -19,7 +19,7 @@ angular.module('main')
 
       return GetOAuth2Token.getToken().then(function () {
         return _sendRequest(encondedSearchString).then(function (result) {
-          that.data.tweets = result.data;
+          return that.data.tweets = result.data;
         });
       });
     };
