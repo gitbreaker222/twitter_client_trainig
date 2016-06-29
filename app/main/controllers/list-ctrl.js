@@ -35,7 +35,12 @@ angular.module('main')
         lat = 37.781157;
 
       if (window.cordova) {
-        $cordovaGeolocation.getCurrentPosition(7000).then(function (location) {
+        var options = {
+          timeout: 7000,
+          maximumAge: null,
+          enableHighAccuracy: false
+        };
+        $cordovaGeolocation.getCurrentPosition(options).then(function (location) {
           long = location.coords.longitude;
           lat = location.coords.latitude;
           GetTweets.searchNearGeolocation(long, lat);
