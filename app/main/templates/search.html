@@ -1,14 +1,30 @@
-<ion-view view-title="main module">
-  <!-- do you want padding? -->
-  <ion-content class="padding">
+<ion-view view-title="Tweets">
 
-    <!-- content goes here -->
+  <div ng-if="list.loading"
+       class="loading_overlay">
+    <ion-spinner icon="crescent"></ion-spinner>
+  </div>
+
+  <div class="bar bar-subheader">
+    <i class="icon ion-search placeholder-icon"></i>
+    <form ng-submit="list.search(list.data.searchString)">
+      <input type="text"
+             placeholder="Search"
+             ng-model="list.data.searchString"
+             ng-blur="list.closeKeyboard()">
+    </form>
+  </div>
+
+  <ion-content class="has-subheader">
+
     <ion-list>
-      <ion-item class="item item-divider">
-        This is your main template!
+      <h1 class="padding">trending hashtags</h1>
+      <ion-item ng-click="list.search('#progmetal')">
+        <h2>#progmetal</h2>
       </ion-item>
-      <ion-item class="item item-icon">
-        Yeiiii!
+      <ion-item ng-repeat="trend in list.data.trendingHashTags.trends"
+                ng-click="list.search( trend.name )">
+        <h2>{{ trend.name }}</h2>
       </ion-item>
     </ion-list>
 
