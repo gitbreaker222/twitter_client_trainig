@@ -1,7 +1,16 @@
 'use strict';
 angular.module('main')
-.controller('InfoCtrl', function ($log) {
+  .controller('InfoCtrl', function ($translate) {
 
-  $log.log('Hello from your Controller: InfoCtrl in module main:. This is your controller:', this);
+    this.translate = function (languageString) {
+      var availableTranslations = [
+        'en-EN',
+        'de-DE'
+      ];
 
-});
+      if (availableTranslations.includes(languageString)) {
+        $translate.use(languageString);
+      }
+    };
+
+  });
