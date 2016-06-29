@@ -1,8 +1,17 @@
 'use strict';
 angular.module('testrun_twitter', [
   'main',
-  'ionic'
+  'ionic',
+  'pascalprecht.translate'
 ])
+  .config(function ($translateProvider) {
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'main/assets/i18n/',
+      suffix: '.json'
+    });
+    $translateProvider.preferredLanguage('en-EN');
+    $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
+  })
   .run(function ($log,
                  $ionicPlatform) {
 
