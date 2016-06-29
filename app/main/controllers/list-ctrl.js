@@ -57,7 +57,8 @@ angular.module('main')
     };
 
     this.refresh = function () {
-      this.search(GetTweets.data.tweets.search_metadata.query);
+      var lastSearchString = decodeURIComponent(GetTweets.data.tweets.search_metadata.query);
+      this.search(lastSearchString);
     };
 
     this.closeKeyboard = function () {
