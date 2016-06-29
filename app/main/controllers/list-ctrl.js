@@ -2,6 +2,7 @@
 angular.module('main')
   .controller('ListCtrl', function ($log,
                                     $scope,
+                                    $state,
                                     GetTweets,
                                     $cordovaKeyboard,
                                     $cordovaGeolocation) {
@@ -14,6 +15,7 @@ angular.module('main')
 
     this.search = function (searchString) {
       that.closeKeyboard();
+      $state.go('main.list');
 
       if (searchString === '') {
         that.clearList();
@@ -41,6 +43,7 @@ angular.module('main')
           $log.log(result); //no user permission?
         });
       } else {
+        $log.info('using default fake geo coordinates!');
         GetTweets.searchNearGeolocation(long, lat);
       }
     };
@@ -56,6 +59,9 @@ angular.module('main')
     };
 
     if (!GetTweets.hasTweets()) {
+      if ($state.current.name === 'main.list') {
+        return;
+      }
       that.searchNearGeolocation();
     }
 
