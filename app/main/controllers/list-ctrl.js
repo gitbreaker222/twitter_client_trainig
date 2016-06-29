@@ -63,10 +63,7 @@ angular.module('main')
       that.data.tweets = {};
     };
 
-    if (!GetTweets.hasTweets()) {
-      if ($state.current.name === 'main.list') {
-        return;
-      }
+    if ($state.current.name === 'main.search') {
       that.searchNearGeolocation();
     }
 
