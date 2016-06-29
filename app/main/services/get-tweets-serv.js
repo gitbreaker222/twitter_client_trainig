@@ -4,6 +4,12 @@ angular.module('main')
 
     var that = this;
 
+    this.data = {
+      searchString: '',
+      tweets: {},
+      trendingHashTags: {}
+    };
+
     var _getWOEID = function (lat, long) {
       var searchUrlPrefix = 'https://api.twitter.com/1.1/trends/closest.json?';
       return $http({
@@ -56,19 +62,7 @@ angular.module('main')
     };
 
     var _encodeSearchString = function (searchString) {
-      return searchString.replace(/#/g, '%23')
-        .replace(/@/g, '%40')
-        .replace(/\(/g, '%28')
-        .replace(/\)/g, '%29')
-        .replace(/:/g, '%3A')
-        .replace(/"/g, '%22')
-        .replace(/\s/g, '%20');
-    };
-
-    this.data = {
-      searchString: '',
-      tweets: {},
-      trendingHashTags: {}
+      return encodeURIComponent(searchString);
     };
 
     this.hasTweets = function () {

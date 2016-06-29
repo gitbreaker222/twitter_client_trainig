@@ -27,6 +27,9 @@ angular.module('main')
         that.loading = false;
       }, function () {
         that.loading = false;
+        that.$broadcast('scroll.refreshComplete');
+      }).finally(function () {
+        $scope.$broadcast('scroll.refreshComplete');
       });
     };
 
@@ -53,6 +56,11 @@ angular.module('main')
       }
     };
 
+    this.refresh = function () {
+      var lastSearchString = decodeURIComponent(GetTweets.data.tweets.search_metadata.query);
+      this.search(lastSearchString);
+    };
+
     this.closeKeyboard = function () {
       if (window.cordova) {
         $cordovaKeyboard.close();
@@ -63,10 +71,7 @@ angular.module('main')
       that.data.tweets = {};
     };
 
-    if (!GetTweets.hasTweets()) {
-      if ($state.current.name === 'main.list') {
-        return;
-      }
+    if ($state.current.name === 'main.search') {
       that.searchNearGeolocation();
     }
 
