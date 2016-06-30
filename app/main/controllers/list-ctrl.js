@@ -27,7 +27,6 @@ angular.module('main')
         that.loading = false;
       }, function () {
         that.loading = false;
-        that.$broadcast('scroll.refreshComplete');
       }).finally(function () {
         $scope.$broadcast('scroll.refreshComplete');
       });
