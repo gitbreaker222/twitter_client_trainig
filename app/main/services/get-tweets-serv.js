@@ -19,6 +19,7 @@ angular.module('main')
 
       return GetOAuth2Token.getToken().then(function () {
         return _sendRequest(encondedSearchString).then(function (result) {
+          result.data.statuses.forEach(_formatLinks);
           return that.data.tweets = result.data;
         });
       });
@@ -105,6 +106,19 @@ angular.module('main')
 
     var _encodeSearchString = function (searchString) {
       return encodeURIComponent(searchString);
+    };
+
+    var _formatLinks = function (tweet) {
+      var urls = tweet.entities.urls;
+      tweet.formattedText = tweet.text;
+
+      urls.forEach(function (urlEntity) {
+        var url = urlEntity.url;
+        var displayUrl = urlEntity.display_url;
+        var expandedUrl = urlEntity.expanded_url;
+
+        tweet.formattedText = tweet.formattedText.replace(url, displayUrl.link(expandedUrl));
+      });
     };
 
   });
