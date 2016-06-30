@@ -1,4 +1,4 @@
-<ion-view view-title="tweet id or so">
+<ion-view view-title="{{ detail.tweet.user.screen_name }} tweets...">
   <ion-content class="padding">
 
     <div class="tweet"
@@ -9,9 +9,8 @@
         <img ng-src="{{detail.tweet.user.profile_image_url}}"
              title="{{ detail.tweet.user.screen_name }}"
              class="size64">
-        <p ng-bind-html="detail.tweet.text | linky"
+        <p ng-bind-html="detail.tweet.formattedText"
            ng-click="openLinkInApp($event)">
-          {{ detail.tweet.text }}
         </p>
       </div>
     </div>
